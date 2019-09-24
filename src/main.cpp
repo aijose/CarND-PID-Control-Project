@@ -33,7 +33,11 @@ string hasData(string s) {
 int main() {
   uWS::Hub h;
 
+// Best pid.Init(0.15, 0.0001, 0.1);
+//  pid.Init(0.3, 0.0001, 0.1);
+// throttle 0.1
   PID pid;
+  pid.Init(0.3, 0.0001, 0.1);
   /**
    * TODO: Initialize the pid variable.
    */
@@ -63,6 +67,8 @@ int main() {
            * NOTE: Feel free to play around with the throttle and speed.
            *   Maybe use another PID controller to control the speed!
            */
+          pid.UpdateError(cte);
+          steer_value = pid.TotalError();
           
           // DEBUG
           std::cout << "CTE: " << cte << " Steering Value: " << steer_value 
@@ -70,7 +76,7 @@ int main() {
 
           json msgJson;
           msgJson["steering_angle"] = steer_value;
-          msgJson["throttle"] = 0.3;
+          msgJson["throttle"] = 0.1;
           auto msg = "42[\"steer\"," + msgJson.dump() + "]";
           std::cout << msg << std::endl;
           ws.send(msg.data(), msg.length(), uWS::OpCode::TEXT);
