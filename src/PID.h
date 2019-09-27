@@ -31,6 +31,12 @@ class PID {
    */
   double TotalError();
 
+  /**
+   * Calculate the control function
+   * @output control function value
+   */
+  double ControlFunction();
+
  private:
   /**
    * PID Errors
@@ -45,6 +51,7 @@ class PID {
   double Kp;
   double Ki;
   double Kd;
+  double total_error;
 };
 
 #endif  // PID_H

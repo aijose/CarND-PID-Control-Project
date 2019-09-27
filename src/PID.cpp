@@ -1,4 +1,5 @@
 #include "PID.h"
+#include <math.h>
 
 /**
  * TODO: Complete the PID class. You may add any additional desired functions.
@@ -18,6 +19,7 @@ void PID::Init(double Kp_, double Ki_, double Kd_) {
     p_error = 0.0;
     i_error = 0.0;
     d_error = 0.0;
+    total_error = 0.0;
 }
 
 void PID::UpdateError(double cte) {
@@ -28,9 +30,17 @@ void PID::UpdateError(double cte) {
     p_error = cte;
     i_error += cte;
     d_error = cte - cte_prev;
+    total_error += pow(cte,2);
 }
 
 double PID::TotalError() {
+  /**
+   * TODO: Calculate and return the total error
+   */
+  return pow(total_error,0.2);  // TODO: Add your total error calc here!
+}
+
+double PID::ControlFunction() {
   /**
    * TODO: Calculate and return the total error
    */
