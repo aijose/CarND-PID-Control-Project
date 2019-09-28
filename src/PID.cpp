@@ -37,7 +37,7 @@ double PID::TotalError() {
   /**
    * TODO: Calculate and return the total error
    */
-  return pow(total_error,0.2);  // TODO: Add your total error calc here!
+  return pow(total_error,0.5);  // TODO: Add your total error calc here!
 }
 
 double PID::ControlFunction() {
