@@ -74,14 +74,19 @@ int main() {
           // Make sure steer_value lies in the range [-1,1]
           steer_value = std::max(-1.0, steer_value);
           steer_value = std::min(1.0, steer_value);
+          double throttle = 0.3 - std::min(0.8*abs(steer_value),0.2);
           
           // DEBUG
           std::cout << "CTE: " << cte << " Steering Value: " << steer_value 
-                    << " Cumulative MSE: " << error_sum << std::endl;
+                    << " Cumulative MSE: " << error_sum  << " Speed: " << speed
+                    << " Throttle: " << throttle
+                    << " Angle: " << angle*M_PI/180.0
+                    << std::endl;
 
           json msgJson;
+          //msgJson["steering_angle"] = 0.5*(steer_value + angle*M_PI/180.0);
           msgJson["steering_angle"] = steer_value;
-          msgJson["throttle"] = 0.3;
+          msgJson["throttle"] = throttle;
           auto msg = "42[\"steer\"," + msgJson.dump() + "]";
           std::cout << msg << std::endl;
           ws.send(msg.data(), msg.length(), uWS::OpCode::TEXT);
