@@ -10,7 +10,7 @@ The goals / steps of this project are the following:
 * Write a report summarizing the approach used to tune the hyper-parameters
 
 ## Rubric Points
-### This section will describe how the each of the [rubric points](https://review.udacity.com/#!/rubrics/1971/view) were addressed in this project.  
+### This section will describe how the each of the [rubric points](https://review.udacity.com/#!/rubrics/1972/view) were addressed in this project.  
 
 ---
 
